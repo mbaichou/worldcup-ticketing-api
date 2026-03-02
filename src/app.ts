@@ -2,10 +2,17 @@ import { Hono } from 'hono'
 
 export const app = new Hono()
 
-// Endpoint pour "/" (Home)
 app.get('/', (c) => {
   return c.json({
     success: true,
-    message: "World Cup Ticketing API" // Vérifie bien l'orthographe ! [cite: 87, 115]
+    message: process.env.API_NAME 
+  })
+})
+
+app.get('/health', (c) => {
+  return c.json({
+    status: "OK",
+    environment: process.env.NODE_ENV, 
+    version: "1.0.0"
   })
 })
